@@ -1,160 +1,411 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <title>2010 – The First Fight</title>
-  <style>
-    body {
-      background-color: #513939;
-      color: #f0f0f0;
-      font-family: 'Georgia', serif;
-      text-align: center;
-      padding: 50px;
-      background-image: radial-gradient(circle at 10% 20%, rgba(40,40,40,0.8) 0%, rgba(20,20,20,0.9) 90%);
-      line-height: 1.6;
-    }
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2010 – The First Silence</title>
+    <style>
+        :root {
+            --dark-bg: #513939;
+            --darker-bg: #3a2a2a;
+            --light-text: #f0f0f0;
+            --medium-text: #b0b0b0;
+            --accent-color: #a0522d;
+            --border-color: rgba(80, 80, 80, 0.5);
+        }
 
-    h1 {
-      font-size: 3.2em;
-      margin-bottom: 10px;
-      letter-spacing: 1px;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-      color: #e8e8e8;
-      font-weight: normal;
-    }
+        html {
+            scroll-behavior: smooth;
+        }
 
-    h2 {
-      font-size: 1.8em;
-      margin-top: 0;
-      font-weight: normal;
-      color: #b0b0b0;
-      letter-spacing: 0.5px;
-    }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-    .memory-box {
-      background: rgba(30,30,30,0.7);
-      border: 1px solid rgba(80,80,80,0.5);
-      padding: 40px;
-      margin: 50px auto;
-      width: 65%;
-      max-width: 700px;
-      border-radius: 12px;
-      line-height: 1.8;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-      backdrop-filter: blur(2px);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
 
-    .memory-box:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 12px 25px rgba(0,0,0,0.3);
-      background: rgba(35,35,35,0.8);
-    }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
 
-    .memory-box p {
-      margin: 20px 0;
-      font-size: 1.1em;
-    }
+        /* Falling paper animation */
+        @keyframes paper-fall {
+            0% {
+                transform: translateY(-50px) translateX(0) rotate(0deg);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(calc(100vh + 50px)) translateX(50px) rotate(360deg);
+                opacity: 0;
+            }
+        }
 
-    details {
-      margin-top: 40px;
-      font-size: 1.1em;
-      cursor: pointer;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-    }
+        body {
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+            font-family: 'EB Garamond', serif;
+            text-align: center;
+            padding: 2rem 1rem;
+            line-height: 1.8;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(40,40,40,0.8) 0%, rgba(20,20,20,0.9) 90%),
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" opacity="0.03"><path d="M50,0 L100,50 L50,100 L0,50 Z" fill="none" stroke="%23a0522d" stroke-width="0.5"/></svg>');
+            background-size: cover, 100px 100px;
+            animation: fadeIn 1s ease-out;
+            position: relative;
+            overflow-x: hidden;
+        }
 
-    details summary {
-      padding: 15px;
-      outline: none;
-    }
+        /* Falling paper elements */
+        .paper {
+            position: absolute;
+            font-size: 1.2rem;
+            opacity: 0;
+            z-index: 1;
+            pointer-events: none;
+            animation: paper-fall linear infinite;
+            color: rgba(200, 200, 200, 0.7);
+        }
 
-    details[open] {
-      animation: fadeIn 0.5s ease;
-    }
+        /* Position and timing for each paper */
+        .paper:nth-child(1) {
+            left: 15%;
+            top: -20px;
+            animation-duration: 18s;
+            animation-delay: 0s;
+            content: "✉️";
+        }
+        .paper:nth-child(2) {
+            left: 30%;
+            top: -50px;
+            animation-duration: 22s;
+            animation-delay: 4s;
+            content: "📝";
+        }
+        .paper:nth-child(3) {
+            left: 55%;
+            top: -30px;
+            animation-duration: 20s;
+            animation-delay: 2s;
+            content: "💌";
+        }
+        .paper:nth-child(4) {
+            left: 80%;
+            top: -40px;
+            animation-duration: 19s;
+            animation-delay: 5s;
+            content: "📄";
+        }
+        .paper:nth-child(5) {
+            left: 10%;
+            top: -60px;
+            animation-duration: 21s;
+            animation-delay: 7s;
+            content: "📜";
+        }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+        h1 {
+            font-size: clamp(2.8rem, 5vw, 3.5rem);
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 0.5rem;
+            color: var(--light-text);
+            font-weight: 400;
+            animation: fadeIn 0.8s ease-out, float 6s ease-in-out infinite;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            letter-spacing: 1px;
+        }
 
-    a {
-      display: inline-block;
-      margin: 25px 12px;
-      padding: 14px 30px;
-      text-decoration: none;
-      color: #fff;
-      background-color: rgba(80,80,80,0.5);
-      border-radius: 10px;
-      transition: all 0.3s ease;
-      border: 1px solid rgba(120,120,120,0.3);
-      font-size: 1em;
-      letter-spacing: 0.5px;
-    }
+        h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-top: 0;
+            color: var(--medium-text);
+            font-weight: 400;
+            font-family: 'Playfair Display', serif;
+            animation: fadeIn 1s ease-out 0.3s both;
+            letter-spacing: 0.5px;
+        }
 
-    a:hover {
-      background-color: rgba(100,100,100,0.7);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    }
+        .memory-box {
+            background: rgba(30, 30, 30, 0.7);
+            border: 1px solid var(--border-color);
+            padding: 2.5rem;
+            margin: 2rem auto;
+            width: min(90%, 700px);
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            backdrop-filter: blur(2px);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            animation: fadeIn 1.2s ease-out 0.6s both;
+            position: relative;
+            overflow: hidden;
+        }
 
-    em {
-      color: #aaa;
-      font-style: italic;
-      display: block;
-      margin-top: 30px;
-      font-size: 1.05em;
-    }
+        .memory-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.3);
+            background: rgba(35,35,35,0.8);
+        }
 
-    /* Decorative elements */
-    .memory-box::before {
-      content: "“";
-      font-size: 5em;
-      color: rgba(100,100,100,0.2);
-      position: absolute;
-      top: -30px;
-      left: 20px;
-      line-height: 1;
-    }
+        .memory-box p {
+            margin: 1.5em 0;
+            font-size: clamp(1.2rem, 1.3vw, 1.4rem);
+            opacity: 0;
+            animation: fadeIn 1s ease-out forwards;
+        }
 
-    .memory-box::after {
-      content: "”";
-      font-size: 5em;
-      color: rgba(100,100,100,0.2);
-      position: absolute;
-      bottom: -80px;
-      right: 20px;
-      line-height: 1;
-    }
-  </style>
+        .memory-box p:nth-child(1) { animation-delay: 1s; }
+        .memory-box p:nth-child(2) { animation-delay: 1.2s; }
+        .memory-box p:nth-child(3) { animation-delay: 1.4s; }
+        .memory-box p:nth-child(4) { animation-delay: 1.6s; }
+
+        em {
+            color: var(--medium-text);
+            font-style: italic;
+            display: block;
+            margin-top: 2rem;
+            font-size: clamp(1.2rem, 1.3vw, 1.3rem);
+            opacity: 0;
+            animation: fadeIn 1s ease-out 1.8s forwards;
+        }
+
+        /* Decorative quotes */
+        .memory-box::before {
+            content: "“";
+            font-size: 5em;
+            color: rgba(100,100,100,0.2);
+            position: absolute;
+            top: -0.5rem;
+            left: 1rem;
+            line-height: 1;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .memory-box::after {
+            content: "”";
+            font-size: 5em;
+            color: rgba(100,100,100,0.2);
+            position: absolute;
+            bottom: -3rem;
+            right: 1rem;
+            line-height: 1;
+            font-family: 'Playfair Display', serif;
+        }
+
+        details {
+            margin: 3rem auto 0;
+            width: min(90%, 600px);
+            font-size: clamp(1.1rem, 1.2vw, 1.3rem);
+            cursor: pointer;
+            text-align: left;
+            background: rgba(40, 40, 40, 0.7);
+            backdrop-filter: blur(5px);
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border: 1px solid var(--border-color);
+            animation: fadeIn 1s ease-out 2s both;
+            position: relative;
+            overflow: hidden;
+        }
+
+        details[open] {
+            animation: fadeIn 0.5s ease;
+            background: rgba(45, 45, 45, 0.8);
+        }
+
+        summary {
+            font-weight: 600;
+            color: var(--light-text);
+            outline: none;
+            list-style: none;
+            text-align: center;
+            padding: 0.8rem;
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.2rem, 1.3vw, 1.4rem);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        summary:hover {
+            color: var(--accent-color);
+        }
+
+        summary::-webkit-details-marker {
+            display: none;
+        }
+
+        details p {
+            text-align: center;
+            margin: 1.5rem 0;
+            font-size: clamp(1.1rem, 1.2vw, 1.2rem);
+        }
+
+        .continue-btn {
+            display: inline-block;
+            margin: 1rem 0.5rem;
+            padding: 0.8rem 1.8rem;
+            text-decoration: none;
+            color: white;
+            background: linear-gradient(135deg, var(--accent-color) 0%, var(--darker-bg) 100%);
+            border-radius: 10px;
+            font-weight: 600;
+            font-family: 'Playfair Display', serif;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            animation: pulse 2s infinite;
+            border: 1px solid rgba(120,120,120,0.3);
+            font-size: clamp(1rem, 1.1vw, 1.1rem);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .continue-btn:hover {
+            background: linear-gradient(135deg, var(--accent-color) 0%, #5a3a3a 100%);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            animation: none;
+        }
+
+        /* Enhanced Mobile Responsiveness */
+        @media (max-width: 768px) {
+            body {
+                padding: 1.2rem 0.8rem;
+                line-height: 1.6;
+            }
+            
+            h1 {
+                font-size: clamp(2.2rem, 6vw, 2.8rem);
+                margin-bottom: 0.3rem;
+            }
+            
+            h2 {
+                font-size: clamp(1.5rem, 5vw, 2rem);
+            }
+            
+            .memory-box {
+                padding: 1.8rem;
+                margin: 1.5rem auto;
+                width: 95%;
+            }
+            
+            .memory-box p {
+                font-size: 1.1rem;
+                margin: 1.2em 0;
+            }
+            
+            em {
+                font-size: 1.1rem;
+                margin-top: 1.5rem;
+            }
+            
+            details {
+                padding: 1.2rem;
+                margin: 2rem auto 0;
+                width: 95%;
+            }
+            
+            summary {
+                font-size: 1.2rem;
+                padding: 0.6rem;
+            }
+            
+            .continue-btn {
+                padding: 0.7rem 1.5rem;
+                font-size: 1rem;
+                margin: 0.8rem 0.4rem;
+            }
+            
+            /* Adjust decorative quotes */
+            .memory-box::before {
+                font-size: 4em;
+                top: -0.3rem;
+                left: 0.5rem;
+            }
+            
+            .memory-box::after {
+                font-size: 4em;
+                bottom: -2.5rem;
+                right: 0.5rem;
+            }
+            
+            /* Adjust paper size on mobile */
+            .paper {
+                font-size: 1rem;
+            }
+        }
+
+        /* Very small devices (phones, 400px and down) */
+        @media (max-width: 400px) {
+            body {
+                padding: 1rem 0.5rem;
+            }
+            
+            .memory-box, details {
+                padding: 1.2rem;
+            }
+            
+            .memory-box p, em {
+                font-size: 1rem;
+                line-height: 1.5;
+            }
+            
+            summary {
+                font-size: 1.1rem;
+            }
+            
+            .continue-btn {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
 </head>
+
 <body>
+    <!-- Falling paper elements -->
+    <div class="paper">✉️</div>
+    <div class="paper">📝</div>
+    <div class="paper">💌</div>
+    <div class="paper">📄</div>
+    <div class="paper">📜</div>
 
-  <h1>2010</h1>
-  <h2>The First Silence</h2>
+    <h1>2010</h1>
+    <h2>The First Silence</h2>
 
-  <div class="memory-box">
-    <p>Something small turned into silence.  
-    Maybe it was a misunderstanding, or maybe it was fear — fear of caring too much.</p>
-    
-    <p>You stopped talking.  
-    He didn't ask why.  
-    You didn't explain.</p>
-    
-    <p>But the distance wasn't empty — it was loud, filled with everything neither of you said.</p>
+    <div class="memory-box">
+        <p>Something small turned into silence.  
+        Maybe it was a misunderstanding, or maybe it was fear — fear of caring too much.</p>
+        
+        <p>You stopped talking.  
+        He didn't ask why.  
+        You didn't explain.</p>
+        
+        <p>But the distance wasn't empty — it was loud, filled with everything neither of you said.</p>
 
-    <p><em>And yet, in your heart, you knew… he still kept the candy wrapper.</em></p>
-  </div>
+        <em>And yet, in your heart, you knew… he still kept the candy wrapper.</em>
+    </div>
 
-  <details>
-    <summary>📝 Open the note you never sent</summary>
-    <p><em>"I never stopped waiting. I just didn't know how to come back." – You</em></p>
-    <a href="2012.html">📩 Try again</a>
-    <a href="LOOP.html">😶 Say nothing</a>
-  </details>
-
-  <audio autoplay loop>
+    <details>
+        <summary>📝 Open the note you never sent</summary>
+        <p><em>"I never stopped waiting. I just didn't know how to come back." – You</em></p>
+        <a href="2012.html" class="continue-btn">📩 Try again</a>
+        <a href="LOOP.html" class="continue-btn">😶 Say nothing</a>
+    </details>
+    <audio autoplay loop>
     <source src="rise-in-silence.mp3" type="audio/mpeg">
   </audio>
 </body>

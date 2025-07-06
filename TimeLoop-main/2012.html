@@ -1,200 +1,376 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <title>2012 – The Almost Reunion</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&display=swap');
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2012 – The Almost Reunion</title>
+    <style>
+        :root {
+            --cream-bg: #f5e9d9;
+            --light-cream: #e4c49e;
+            --dark-brown: #3a2727;
+            --medium-brown: #5e4235;
+            --accent-brown: #7a4a3a;
+            --border-color: rgba(62, 57, 48, 0.2);
+        }
 
-    body {
-      background-color: #f5e9d9;
-      color: #3a2727;
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      margin: 0;
-      padding: 0;
-      min-height: 100vh;
-      background-image: 
-        radial-gradient(circle at 20% 30%, rgba(235, 203, 171, 0.5) 0%, transparent 40%),
-        radial-gradient(circle at 80% 70%, rgba(210, 178, 146, 0.3) 0%, transparent 40%);
-      background-attachment: fixed;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      background-size: 200% 200%;
-      animation: bgShift 30s ease-in-out infinite alternate;
-    }
+        html {
+            scroll-behavior: smooth;
+        }
 
-    @keyframes bgShift {
-      from { background-position: 0% 50%; }
-      to { background-position: 100% 50%; }
-    }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-    h1 {
-      font-size: 3.5em;
-      margin: 50px 0 10px;
-      color: #2e1f1f;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
-      font-weight: 300;
-      letter-spacing: 1px;
-      animation: titleGlow 6s ease-in-out infinite alternate;
-    }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
 
-    @keyframes titleGlow {
-      from { text-shadow: 1px 1px 3px rgba(0,0,0,0.1); }
-      to { text-shadow: 2px 2px 8px rgba(0,0,0,0.2); }
-    }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
 
-    h2 {
-      font-size: 1.8em;
-      color: #5e4235;
-      font-weight: 300;
-      margin: 0 0 30px;
-      opacity: 0;
-      animation: fadeSlideIn 2s ease forwards;
-      animation-delay: 1s;
-    }
+        /* Background shift animation */
+        @keyframes bgShift {
+            from { background-position: 0% 50%; }
+            to { background-position: 100% 50%; }
+        }
 
-    @keyframes fadeSlideIn {
-      from { opacity: 0; transform: translateY(-10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+        /* Floating leaf animation */
+        @keyframes leaf-float {
+            0% {
+                transform: translateY(-50px) translateX(0) rotate(0deg);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(calc(100vh + 50px)) translateX(50px) rotate(360deg);
+                opacity: 0;
+            }
+        }
 
-    .memory-box {
-      background: rgba(228, 196, 158, 0.85);
-      border: 1px solid rgba(62, 57, 48, 0.2);
-      padding: 40px;
-      border-radius: 15px;
-      width: 70%;
-      max-width: 700px;
-      box-shadow: 
-        0 6px 20px rgba(0,0,0,0.1),
-        inset 0 0 10px rgba(255, 255, 255, 0.3);
-      backdrop-filter: blur(2px);
-      transition: all 0.4s ease;
-      margin-bottom: 30px;
-      animation: fadeFloat 10s ease-in-out infinite alternate;
-    }
+        body {
+            background-color: var(--cream-bg);
+            color: var(--dark-brown);
+            font-family: 'EB Garamond', serif;
+            margin: 0;
+            padding: 2rem 1rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(235, 203, 171, 0.5) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(210, 178, 146, 0.3) 0%, transparent 40%),
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" opacity="0.03"><path d="M50,0 L100,50 L50,100 L0,50 Z" fill="none" stroke="%237a4a3a" stroke-width="0.5"/></svg>');
+            background-size: 200% 200%, 200% 200%, 100px 100px;
+            animation: bgShift 30s ease-in-out infinite alternate;
+            position: relative;
+            overflow-x: hidden;
+        }
 
-    @keyframes fadeFloat {
-      from { opacity: 0.95; transform: translateY(0); }
-      to { opacity: 1; transform: translateY(-4px); }
-    }
+        /* Floating leaf elements */
+        .leaf {
+            position: absolute;
+            font-size: 1.2rem;
+            opacity: 0;
+            z-index: 1;
+            pointer-events: none;
+            animation: leaf-float linear infinite;
+            color: rgba(90, 66, 53, 0.6);
+        }
 
-    .memory-box:hover {
-      transform: translateY(-4px);
-      box-shadow: 
-        0 10px 30px rgba(0,0,0,0.15),
-        inset 0 0 15px rgba(255, 255, 255, 0.4);
-    }
+        /* Position and timing for each leaf */
+        .leaf:nth-child(1) {
+            left: 10%;
+            top: -20px;
+            animation-duration: 25s;
+            animation-delay: 0s;
+            content: "🍂";
+        }
+        .leaf:nth-child(2) {
+            left: 30%;
+            top: -50px;
+            animation-duration: 30s;
+            animation-delay: 5s;
+            content: "🍁";
+        }
+        .leaf:nth-child(3) {
+            left: 60%;
+            top: -30px;
+            animation-duration: 28s;
+            animation-delay: 3s;
+            content: "🌿";
+        }
+        .leaf:nth-child(4) {
+            left: 80%;
+            top: -40px;
+            animation-duration: 32s;
+            animation-delay: 7s;
+            content: "🍃";
+        }
 
-    .memory-box p {
-      text-align: left;
-      line-height: 1.9;
-      font-size: 1.2em;
-      margin: 20px 0;
-    }
+        h1 {
+            font-size: clamp(2.8rem, 5vw, 3.5rem);
+            font-family: 'Playfair Display', serif;
+            margin: 1.5rem 0 0.5rem;
+            color: var(--dark-brown);
+            font-weight: 300;
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+            animation: fadeIn 0.8s ease-out, float 6s ease-in-out infinite;
+        }
 
-    em {
-      color: #5e3d2e;
-      font-style: italic;
-      display: block;
-      margin-top: 30px;
-      font-weight: 500;
-      text-align: center;
-      animation: subtlePulse 5s ease-in-out infinite alternate;
-    }
+        h2 {
+            font-size: clamp(1.6rem, 4vw, 2.2rem);
+            color: var(--medium-brown);
+            font-weight: 300;
+            font-family: 'Playfair Display', serif;
+            margin: 0 0 1.5rem;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 0.3s forwards;
+        }
 
-    @keyframes subtlePulse {
-      from { opacity: 0.9; }
-      to { opacity: 1; }
-    }
+        .memory-box {
+            background: rgba(228, 196, 158, 0.85);
+            border: 1px solid var(--border-color);
+            padding: 2.5rem;
+            margin: 1.5rem auto;
+            width: min(90%, 700px);
+            border-radius: 15px;
+            box-shadow: 
+                0 6px 20px rgba(0,0,0,0.1),
+                inset 0 0 10px rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(2px);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            animation: fadeIn 1.2s ease-out 0.6s both;
+            position: relative;
+            overflow: hidden;
+        }
 
-    details {
-      background: rgba(228, 196, 158, 0.7);
-      padding: 10px;
-      border-radius: 10px;
-      cursor: pointer;
-      margin-bottom: 50px;
-      width: 70%;
-      max-width: 700px;
-      transition: background 0.3s ease;
-    }
+        .memory-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 
+                0 10px 30px rgba(0,0,0,0.15),
+                inset 0 0 15px rgba(255, 255, 255, 0.4);
+        }
 
-    details:hover {
-      background: rgba(228, 196, 158, 0.9);
-    }
+        .memory-box p {
+            text-align: left;
+            line-height: 1.9;
+            font-size: clamp(1.2rem, 1.3vw, 1.4rem);
+            margin: 1.5em 0;
+            opacity: 0;
+            animation: fadeIn 1s ease-out forwards;
+        }
 
-    details summary {
-      font-size: 1.2em;
-      color: #4a3429;
-      font-weight: bold;
-      padding: 10px;
-    }
+        .memory-box p:nth-child(1) { animation-delay: 1s; }
+        .memory-box p:nth-child(2) { animation-delay: 1.2s; }
+        .memory-box p:nth-child(3) { animation-delay: 1.4s; }
+        .memory-box p:nth-child(4) { animation-delay: 1.6s; }
 
-    details[open] {
-      animation: fadeIn 0.4s ease;
-    }
+        em {
+            color: var(--medium-brown);
+            font-style: italic;
+            display: block;
+            margin-top: 2rem;
+            font-weight: 500;
+            text-align: center;
+            font-size: clamp(1.2rem, 1.3vw, 1.3rem);
+            opacity: 0;
+            animation: fadeIn 1s ease-out 1.8s forwards, pulse 5s ease-in-out infinite;
+        }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+        details {
+            background: rgba(228, 196, 158, 0.7);
+            padding: 1.5rem;
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 2rem auto;
+            width: min(90%, 700px);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            animation: fadeIn 1s ease-out 2s both;
+            position: relative;
+            overflow: hidden;
+        }
 
-    a {
-      display: inline-block;
-      background: linear-gradient(to right, #7a4a3a, #9a6a4a);
-      color: #fff;
-      padding: 12px 25px;
-      margin: 10px;
-      border-radius: 25px;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      animation: buttonPulse 3s ease-in-out infinite alternate;
-    }
+        details:hover {
+            background: rgba(228, 196, 158, 0.9);
+        }
 
-    @keyframes buttonPulse {
-      from { box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-      to { box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
-    }
+        details[open] {
+            animation: fadeIn 0.4s ease;
+        }
 
-    a:hover {
-      background: linear-gradient(to right, #9a6a4a, #b07c5c);
-      transform: translateY(-2px);
-    }
+        summary {
+            font-size: clamp(1.2rem, 1.3vw, 1.4rem);
+            color: var(--dark-brown);
+            font-weight: 600;
+            font-family: 'Playfair Display', serif;
+            padding: 0.8rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
 
-    @media (max-width: 768px) {
-      h1 { font-size: 2.8em; }
-      h2 { font-size: 1.5em; }
-      .memory-box, details { width: 85%; padding: 30px 20px; }
-    }
-  </style>
+        summary:hover {
+            color: var(--accent-brown);
+        }
+
+        summary::-webkit-details-marker {
+            display: none;
+        }
+
+        details p {
+            text-align: center;
+            margin: 1.5rem 0;
+            font-size: clamp(1.1rem, 1.2vw, 1.2rem);
+        }
+
+        .continue-btn {
+            display: inline-block;
+            background: linear-gradient(to right, var(--accent-brown), #9a6a4a);
+            color: #fff;
+            padding: 0.8rem 1.8rem;
+            margin: 0.8rem;
+            border-radius: 25px;
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            animation: pulse 3s ease-in-out infinite;
+            border: none;
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1rem, 1.1vw, 1.1rem);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .continue-btn:hover {
+            background: linear-gradient(to right, #9a6a4a, #b07c5c);
+            transform: translateY(-3px) scale(1.05);
+            animation: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .continue-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: all 0.5s ease;
+        }
+
+        .continue-btn:hover::before {
+            left: 100%;
+        }
+
+        /* Enhanced Mobile Responsiveness */
+        @media (max-width: 768px) {
+            body {
+                padding: 1.2rem 0.8rem;
+            }
+            
+            h1 {
+                font-size: clamp(2.2rem, 6vw, 2.8rem);
+                margin: 1rem 0 0.3rem;
+            }
+            
+            h2 {
+                font-size: clamp(1.4rem, 5vw, 1.8rem);
+                margin-bottom: 1rem;
+            }
+            
+            .memory-box, details {
+                padding: 1.8rem;
+                width: 95%;
+            }
+            
+            .memory-box p {
+                font-size: 1.1rem;
+                line-height: 1.8;
+                margin: 1.2em 0;
+            }
+            
+            em {
+                font-size: 1.1rem;
+                margin-top: 1.5rem;
+            }
+            
+            .continue-btn {
+                padding: 0.7rem 1.5rem;
+                font-size: 1rem;
+                margin: 0.6rem;
+            }
+            
+            /* Adjust leaf size on mobile */
+            .leaf {
+                font-size: 1rem;
+            }
+        }
+
+        /* Very small devices (phones, 400px and down) */
+        @media (max-width: 400px) {
+            body {
+                padding: 1rem 0.5rem;
+            }
+            
+            .memory-box, details {
+                padding: 1.2rem;
+            }
+            
+            .memory-box p, em {
+                font-size: 1rem;
+                line-height: 1.7;
+            }
+            
+            summary {
+                font-size: 1.1rem;
+            }
+            
+            .continue-btn {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
 </head>
+
 <body>
+    <!-- Floating leaf elements -->
+    <div class="leaf">🍂</div>
+    <div class="leaf">🍁</div>
+    <div class="leaf">🌿</div>
+    <div class="leaf">🍃</div>
 
-  <h1>2012</h1>
-  <h2>The Almost Home</h2>
+    <h1>2012</h1>
+    <h2>The Almost Home</h2>
 
-  <div class="memory-box">
-    <p>You saw him again. You hadn’t meant to — it was just another turn, another street, another ordinary moment. But there he was. He looked different — older, quieter — but your heart knew him in one breath. And his eyes… they didn’t just find you. They held you, like they’d been searching every crowd for years.</p>
+    <div class="memory-box">
+        <p>You saw him again. You hadn't meant to — it was just another turn, another street, another ordinary moment. But there he was. He looked different — older, quieter — but your heart knew him in one breath. And his eyes... they didn't just find you. They held you, like they'd been searching every crowd for years.</p>
 
-    <p>You forgot how to breathe. He smiled, gently — as if the past hadn’t cracked you both wide open. And you smiled back — the kind of smile that only survives in people who learned to love silently. You didn’t ask why he never looked for you. He didn’t ask why you disappeared. Because deep down, maybe you both already knew the answers.</p>
+        <p>You forgot how to breathe. He smiled, gently — as if the past hadn't cracked you both wide open. And you smiled back — the kind of smile that only survives in people who learned to love silently. You didn't ask why he never looked for you. He didn't ask why you disappeared. Because deep down, maybe you both already knew the answers.</p>
 
-    <p>No one said a word. Not about the years. Not about the space between you. Because for the past two years, neither of you were really living — just existing. Just surviving. Just breathing, but never whole.</p>
+        <p>No one said a word. Not about the years. Not about the space between you. Because for the past two years, neither of you were really living — just existing. Just surviving. Just breathing, but never whole.</p>
 
-    <p><em>And yet, for the first time in years, time felt kind again.</em></p>
-  </div>
-
-  <details>
-    <summary>💌 What you wanted to say...</summary>
-    <p><em>"I missed you every single day. I just didn’t think I was allowed to."</em></p>
-    <div style="margin-top:20px;">
-      <a href="2023.html">🌠 Say it now</a>
-      <a href="LOOP.html">🕳️ Stay silent</a>
+        <em>And yet, for the first time in years, time felt kind again.</em>
     </div>
-  </details>
 
-  <audio autoplay loop>
+    <details>
+        <summary>💌 What you wanted to say...</summary>
+        <p><em>"I missed you every single day. I just didn't think I was allowed to."</em></p>
+        <div style="margin-top:1.5rem; text-align:center;">
+            <a href="2023.html" class="continue-btn">🌠 Say it now</a>
+            <a href="LOOP.html" class="continue-btn">🕳️ Stay silent</a>
+        </div>
+    </details>
+    <audio autoplay loop>
     <source src="youtube-folk-music-fields.mp3" type="audio/mpeg">
   </audio>
 

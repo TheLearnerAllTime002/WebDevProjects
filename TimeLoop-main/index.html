@@ -2,13 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Time-Locked: The Beginning</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Playfair+Display:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Playfair+Display:wght@400;600&display=swap');
-        
+        /* Basic Reset & Variables */
+        :root {
+            --dark-bg: #0a0a0a;
+            --light-text: #e0e0e0;
+            --accent-gold: #f5e9d0;
+            --dark-accent: #1e1e1e;
+            --border-color: rgba(80, 80, 80, 0.3);
+            --button-bg-hover: rgba(80, 80, 80, 0.3);
+            --glow-color: rgba(245, 233, 208, 0.6);
+        }
+
         body {
-            background-color: #0a0a0a;
-            color: #e0e0e0;
+            margin: 0;
+            background-color: var(--dark-bg);
+            color: var(--light-text);
             font-family: 'Cormorant Garamond', serif;
             min-height: 100vh;
             display: flex;
@@ -17,33 +29,78 @@
             align-items: center;
             justify-content: center;
             padding: 20px;
-            background-image: 
-                radial-gradient(circle at 20% 30%, rgba(30, 30, 30, 0.8) 0%, transparent 40%),
-                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" opacity="0.02"><path d="M50,0 L100,50 L50,100 L0,50 Z" fill="none" stroke="white" stroke-width="1"/></svg>');
+            overflow: hidden; /* Prevent scroll issues with subtle background animations */
+            position: relative; /* Needed for ::before pseudo-element positioning */
+
+            /* Enhanced Background with subtle patterns */
+            background-image:
+                radial-gradient(circle at 50% 50%, rgba(30, 30, 30, 0.7) 0%, transparent 70%),
+                repeating-linear-gradient(
+                    45deg,
+                    rgba(255, 255, 255, 0.01),
+                    rgba(255, 255, 255, 0.01) 10px,
+                    transparent 10px,
+                    transparent 20px
+                ),
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" opacity="0.03"><path d="M50,0 L100,50 L50,100 L0,50 Z" fill="none" stroke="white" stroke-width="0.5"/></svg>');
+            background-size: cover, 20px 20px, 100px 100px;
+            background-position: center, 0 0, 0 0;
+            animation: backgroundPulse 15s infinite alternate ease-in-out; /* Subtle background animation */
+        }
+
+        /* --- Particle Animation (Time Dust) --- */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 15% 50%, rgba(245, 233, 208, 0.05) 0%, transparent 20%),
+                        radial-gradient(circle at 85% 30%, rgba(245, 233, 208, 0.05) 0%, transparent 20%),
+                        radial-gradient(circle at 40% 80%, rgba(245, 233, 208, 0.05) 0%, transparent 20%),
+                        radial-gradient(circle at 70% 10%, rgba(245, 233, 208, 0.05) 0%, transparent 20%),
+                        radial-gradient(circle at 25% 90%, rgba(245, 233, 208, 0.05) 0%, transparent 20%);
+            background-size: 500px 500px, 400px 400px, 600px 600px, 300px 300px, 550px 550px;
+            background-repeat: no-repeat;
+            opacity: 0.5;
+            animation: timeDustMovement 30s linear infinite alternate, timeDustFade 5s ease-in-out infinite alternate;
+            pointer-events: none; /* Allows clicks to pass through */
+            z-index: -1; /* Ensures it stays behind content */
         }
 
         h1 {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(2.5rem, 8vw, 4rem);
+            font-size: clamp(2.5rem, 8vw, 4.5rem); /* Larger clamp range for better scaling */
             margin-bottom: 1.5rem;
-            color: #f5e9d0;
-            animation: fadeIn 2s ease;
+            color: var(--accent-gold);
+            text-shadow: 0 0 5px rgba(245, 233, 208, 0.3), 0 0 15px rgba(245, 233, 208, 0.2); /* Initial subtle glow */
+            position: relative; /* For pseudo-element effects */
+            animation: fadeIn 2s ease, glitchText 0.5s infinite alternate 2s; /* Initial fade in, then subtle glitch */
+            transition: text-shadow 0.3s ease, transform 0.3s ease; /* Smooth transition for hover */
+        }
+
+        h1:hover {
+            text-shadow: 0 0 10px var(--glow-color), 0 0 25px var(--glow-color), 0 0 40px var(--glow-color); /* Stronger glow on hover */
+            transform: scale(1.02); /* Slight scale on hover */
+            animation: none; /* Stop glitch on hover for clarity */
         }
 
         p {
-            font-size: 1.1rem;
+            font-size: clamp(1rem, 3vw, 1.2rem); /* Responsive font size for paragraphs */
             margin: 20px auto;
-            max-width: 600px;
-            line-height: 1.6;
+            max-width: 700px; /* Increased max-width for better readability on larger screens */
+            line-height: 1.7;
             opacity: 0;
             animation: fadeIn 2s ease 0.5s forwards;
+            text-shadow: 0 0 2px rgba(224, 224, 224, 0.1); /* Subtle text shadow */
         }
 
         .options {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 20px;
+            gap: 25px; /* Increased gap for better spacing */
             margin-top: 40px;
             opacity: 0;
             animation: fadeIn 2s ease 1s forwards;
@@ -51,49 +108,139 @@
 
         .options a {
             display: inline-block;
-            padding: 12px 30px;
-            font-size: 1.1rem;
-            color: #f5e9d0;
+            padding: 14px 35px; /* Slightly larger padding */
+            font-size: clamp(1rem, 3vw, 1.15rem); /* Responsive font size for buttons */
+            color: var(--accent-gold);
             background-color: rgba(30, 30, 30, 0.7);
-            border: 1px solid rgba(80, 80, 80, 0.3);
+            border: 1px solid var(--border-color);
             border-radius: 50px;
             text-decoration: none;
             transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(245, 233, 208, 0.1); /* Subtle initial shadow */
+            position: relative;
+            overflow: hidden; /* For pseudo-element effects */
+            animation: pulseEffect 2s infinite alternate ease-in-out; /* Continuous subtle pulse */
         }
 
         .options a:hover {
-            background-color: rgba(80, 80, 80, 0.3);
-            transform: translateY(-3px);
+            background-color: var(--button-bg-hover);
+            transform: translateY(-5px) scale(1.05); /* More pronounced lift and scale */
+            border-color: rgba(245, 233, 208, 0.5); /* Border glows on hover */
+            box-shadow: 0 0 15px var(--glow-color), 0 0 30px rgba(245, 233, 208, 0.3); /* Stronger glow */
+            animation: none; /* Stop pulse on hover */
+        }
+
+        /* Pseudo-element for a subtle "shine" effect on hover */
+        .options a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: all 0.5s ease;
+        }
+
+        .options a:hover::before {
+            left: 100%;
         }
 
         .credit {
-            margin-top: 40px;
-            font-size: 0.9rem;
+            margin-top: 50px; /* More margin */
+            font-size: 0.95rem; /* Slightly larger */
             color: #666;
             opacity: 0;
             animation: fadeIn 2s ease 1.5s forwards;
+            font-family: 'Inter', sans-serif; /* Using Inter for credit */
         }
 
+        /* Keyframe Animations */
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
+        @keyframes glitchText {
+            0% { text-shadow: 0 0 5px rgba(245, 233, 208, 0.3), 0 0 15px rgba(245, 233, 208, 0.2); transform: skewX(0deg); }
+            20% { text-shadow: 0 0 5px rgba(245, 233, 208, 0.3), 0 0 15px rgba(245, 233, 208, 0.2); transform: skewX(0deg); }
+            21% { text-shadow: 0 0 5px rgba(245, 233, 208, 0.3), 0 0 15px rgba(245, 233, 208, 0.2), -2px 0px 0px rgba(255, 0, 0, 0.7); transform: skewX(-1deg); }
+            22% { text-shadow: 0 0 5px rgba(245, 233, 208, 0.3), 0 0 15px rgba(245, 233, 208, 0.2), 2px 0px 0px rgba(0, 255, 0, 0.7); transform: skewX(1deg); }
+            23% { text-shadow: 0 0 5px rgba(245, 233, 208, 0.3), 0 0 15px rgba(245, 233, 208, 0.2); transform: skewX(0deg); }
+            40% { text-shadow: 0 0 5px rgba(245, 233, 208, 0.3), 0 0 15px rgba(245, 233, 208, 0.2); transform: skewX(0deg); }
+            41% { text-shadow: 0 0 5px rgba(245, 233, 208, 0.3), 0 0 15px rgba(245, 233, 208, 0.2), -1px 0px 0px rgba(0, 0, 255, 0.7); transform: skewX(-0.5deg); }
+            42% { text-shadow: 0 0 5px rgba(245, 233, 208, 0.3), 0 0 15px rgba(245, 233, 208, 0.2), 1px 0px 0px rgba(255, 255, 0, 0.7); transform: skewX(0.5deg); }
+            43% { text-shadow: 0 0 5px rgba(245, 233, 208, 0.3), 0 0 15px rgba(245, 233, 208, 0.2); transform: skewX(0deg); }
+            100% { text-shadow: 0 0 5px rgba(245, 233, 208, 0.3), 0 0 15px rgba(245, 233, 208, 0.2); transform: skewX(0deg); }
+        }
+
+        @keyframes pulseEffect {
+            0% { transform: scale(1); box-shadow: 0 0 10px rgba(245, 233, 208, 0.1); }
+            50% { transform: scale(1.01); box-shadow: 0 0 15px rgba(245, 233, 208, 0.3); }
+            100% { transform: scale(1); box-shadow: 0 0 10px rgba(245, 233, 208, 0.1); }
+        }
+
+        @keyframes backgroundPulse {
+            0% { background-position: center, 0 0, 0 0; }
+            50% { background-position: center, 5px 5px, 10px 10px; }
+            100% { background-position: center, 0 0, 0 0; }
+        }
+
+        @keyframes timeDustMovement {
+            0% { background-position: 0% 0%, 100% 100%, 50% 50%, 20% 80%, 70% 20%; }
+            100% { background-position: 100% 100%, 0% 0%, 100% 0%, 0% 100%, 30% 70%; }
+        }
+
+        @keyframes timeDustFade {
+            0% { opacity: 0.5; }
+            50% { opacity: 0.2; }
+            100% { opacity: 0.5; }
+        }
+
+        /* Responsive Adjustments */
         @media (max-width: 768px) {
             h1 {
-                font-size: 2.5rem;
+                font-size: clamp(2rem, 10vw, 3.5rem); /* Adjust for smaller screens */
+            }
+            p {
+                font-size: clamp(0.9rem, 4vw, 1.1rem);
+                margin: 15px auto;
             }
             .options {
                 flex-direction: column;
                 gap: 15px;
+                margin-top: 30px;
+            }
+            .options a {
+                padding: 12px 25px;
+                font-size: clamp(0.95rem, 4vw, 1.1rem);
+            }
+            .credit {
+                margin-top: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 15px;
+            }
+            h1 {
+                font-size: clamp(1.8rem, 12vw, 3rem);
+            }
+            p {
+                font-size: clamp(0.85rem, 4.5vw, 1rem);
+            }
+            .options a {
+                width: 80%; /* Make buttons wider on very small screens */
+                max-width: 300px;
             }
         }
     </style>
 </head>
 <body>
     <h1>⏳ Time-Locked ⏳</h1>
-    <p>You wake up in a dark room. Everything feels... familiar. The clock has stopped. The world feels frozen.</p>
-    <p>Someone's voice whispers in your mind: <em>"You must remember... or be lost in time forever."</em></p>
+    <p>You wake up in a dark room. Everything feels... familiar. The clock has stopped. The world feels frozen, a whisper of forgotten memories echoing in the void.</p>
+    <p>A voice, ancient and resonant, pierces the silence: <em>"You must remember the threads of time... or be lost in its labyrinth forever."</em></p>
 
     <div class="options">
         <a href="1998.html">🌸 Go to the Past</a>
