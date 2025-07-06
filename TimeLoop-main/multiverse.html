@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Multiverse – We Were Never Human</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;700&family=Montserrat:wght@300;400&display=swap');
+    
+    body {
+      background: 
+        radial-gradient(circle at 20% 30%, rgba(12, 12, 28, 0.9) 0%, rgba(5, 5, 18, 1) 100%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" opacity="0.02"><circle cx="50" cy="50" r="1" fill="white"/></svg>');
+      color: #f0f0f0;
+      font-family: 'Montserrat', sans-serif;
+      text-align: center;
+      padding: 0;
+      margin: 0;
+      min-height: 100vh;
+      background-size: 400% 400%;
+      animation: bgShift 40s ease infinite;
+    }
+
+    @keyframes bgShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    h1 {
+      font-size: 4em;
+      color: #97e3ff;
+      margin: 40px 0 10px;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700;
+      text-shadow: 
+        0 0 10px rgba(151, 227, 255, 0.5),
+        0 0 20px rgba(50, 153, 204, 0.3);
+      letter-spacing: 1px;
+      animation: pulse 4s ease-in-out infinite alternate, slowGlow 10s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 0.9; }
+      100% { opacity: 1; text-shadow: 
+        0 0 15px rgba(151, 227, 255, 0.7),
+        0 0 30px rgba(50, 153, 204, 0.5); }
+    }
+
+    @keyframes slowGlow {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+    }
+
+    p.subtitle {
+      font-size: 1.3em;
+      color: #cdd;
+      margin-bottom: 60px;
+      font-style: italic;
+      letter-spacing: 0.5px;
+    }
+
+    h2 {
+      font-size: 1.8em;
+      color: #e0e0ff;
+      margin: 0 0 20px;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 500;
+    }
+
+    .timeline-box {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(100, 150, 255, 0.1);
+      border-radius: 16px;
+      padding: 40px;
+      margin: 30px auto;
+      width: 70%;
+      max-width: 800px;
+      line-height: 1.9;
+      box-shadow: 
+        0 0 30px rgba(0, 200, 255, 0.05),
+        inset 0 0 20px rgba(100, 200, 255, 0.03);
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
+    }
+
+    .timeline-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 
+        0 0 40px rgba(0, 200, 255, 0.1),
+        inset 0 0 30px rgba(100, 200, 255, 0.05);
+    }
+
+    p {
+      font-size: 1.1em;
+      color: #ccc;
+      margin: 20px 0;
+    }
+
+    em {
+      font-style: italic;
+      color: #aaa;
+      display: block;
+      margin-top: 25px;
+    }
+
+    .btn {
+      display: inline-block;
+      margin: 60px auto;
+      padding: 16px 40px;
+      background: linear-gradient(135deg, #2f445e, #3a5a7a);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 50px;
+      font-size: 1.1em;
+      transition: all 0.4s ease;
+      border: 1px solid rgba(100, 150, 255, 0.2);
+      box-shadow: 
+        0 5px 15px rgba(0, 0, 0, 0.2),
+        0 0 10px rgba(100, 200, 255, 0.1);
+      letter-spacing: 0.5px;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 
+        0 8px 25px rgba(0, 0, 0, 0.3),
+        0 0 15px rgba(100, 200, 255, 0.2);
+      background: linear-gradient(135deg, #3a5a7a, #4a6a8a);
+    }
+
+    .quote {
+      margin: 60px auto;
+      font-size: 1.3em;
+      color: #e0e0ff;
+      font-style: italic;
+      max-width: 600px;
+      padding: 30px;
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    .audio-controls {
+      margin: 30px auto;
+    }
+
+    .audio-controls button {
+      padding: 10px 20px;
+      background: #2f445e;
+      border: 1px solid rgba(100,150,255,0.2);
+      color: #97e3ff;
+      font-size: 1em;
+      border-radius: 30px;
+      cursor: pointer;
+    }
+
+    .audio-controls button:hover {
+      background: #3a5a7a;
+    }
+
+    @media (max-width: 768px) {
+      .timeline-box {
+        width: 85%;
+        padding: 30px 20px;
+      }
+      
+      h1 {
+        font-size: 2.8em;
+      }
+      
+      p {
+        font-size: 1em;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Another Universe</h1>
+  <p class="subtitle"><em>We always found each other.</em></p>
+
+ 
+
+  <div class="timeline-box">
+    <h2>🧬 Version 001: Signals</h2>
+    <p>You were a signal. A frequency drifting through galaxies.</p>
+    <p>He was the only one who echoed back — perfectly in phase. You circled stars together, never touching, always resonating.</p>
+    <em>They called it noise. You knew it was music.</em>
+  </div>
+
+  <div class="timeline-box">
+    <h2>💻 Version 243: Fragments of Code</h2>
+    <p>You were lines of lost code, buried in an abandoned server.</p>
+    <p>But even after reboot, you found each other.  
+    Memory 1998. Shared object: "tree". Variable: "laugh".</p>
+    <p>You didn't run commands. You just… remembered.</p>
+  </div>
+
+  <div class="timeline-box">
+    <h2>🌌 Version 888: Twin Stars</h2>
+    <p>You weren't born. You ignited.</p>
+    <p>Two stars, pulsing across space — dying and rebirthing in supernovae.  
+    Every time the universe collapsed, you returned to each other's light.</p>
+    <em>Even gravity gave up trying to separate you.</em>
+  </div>
+
+  <div class="timeline-box">
+    <h2>☁️ Version ∞: The Dream</h2>
+    <p>You weren't real. Just two ideas passing through a dream.</p>
+    <p>But when you found each other in the fog, you stayed.  
+    Not knowing names, not remembering endings.  
+    Just laughter. Just warmth. Just the echo of "again."</p>
+  </div>
+
+  <div class="quote">
+    <p>"In every version of reality, I still look for you first."</p>
+  </div>
+
+  <a class="btn" href="index.html">↺ Return to Universe 1</a>
+ <audio autoplay loop>
+    <source src="short-piano-jingle.mp3" type="audio/mpeg">
+  </audio>
+</body>
+</html>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300&family=Playfair+Display:ital@1&display=swap"
+        rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>1998 : The First Meeting</title>
+    <style>
+        body {
+            background-color: #f5e0ce;
+            color: #2f2f2f;
+            font-family: 'Georgia', serif;
+            text-align: center;
+            padding: 2rem 1rem;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-family: 'Times New Roman', Times, serif;
+            margin-bottom: 0.5rem;
+            color: #8b4513;
+            font-weight: normal;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 0.5rem;
+            color: brown;
+            font-weight: normal;
+            text-align: center;
+        }
+
+        .memory-box {
+            background-color: #fff0e6;
+            border: 1px solid #e0cfc1;
+            padding: 2rem;
+            margin: 2rem auto;
+            width: min(90%, 700px);
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            font-size: medium;
+        }
+
+        .memory-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 00;
+            line-height: 1.8;
+            font-size: 1.9rem; 
+            color: #000000;
+
+        }
+
+        .memory-text p {
+            margin-bottom: 1.2em;
+            text-align: center;
+            font-size: medium;
+
+
+        }
+
+        .memory-date {
+            font-family: 'Times New Roman', Times, serif;
+            font-weight: 600;
+            font-style: normal;
+            letter-spacing: 1px;
+        }
+
+
+        .memory-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25 rgba(0, 0, 0, 0.08);
+        }
+
+        .memory-box p {
+            font-size: 15px;
+            margin: 1rem 0;
+        }
+
+        details {
+            margin: 3rem auto 0;
+            width: min(90%, 700px);
+            font-size: clamp(1rem, 1.2vw, 1.2rem);
+            cursor: pointer;
+            text-align: left;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(15px);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border: 1px solid rgba(224, 207, 193, 0.3);
+            animation: fadeIn 1s ease-out 2.5s both;
+        }
+
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #8b4513;
+            font-weight: bold;
+        }
+        a:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 
+                0 12px 35px rgba(139, 69, 19, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            background: linear-gradient(135deg, #a0522d 0%, #8b4513 100%);
+        }
+        details:hover {
+            box-shadow: 0 8px 25 rgba(0, 0, 0, 0.08);
+            transform: translateY(5px);
+        }
+
+        details[open] {
+            background-color: #fff0e6;
+        }
+
+        summary {
+            font-weight: bold;
+            color: #8b4513;
+            outline: none;
+            list-style: none;
+            text-align: center;
+            padding: 0.5rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        summary::-webkit-textfield-decoration-container {
+            display: none;
+        }
+
+        summary::after {
+            content: " ✨";
+            margin-left: 10px;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        details[open] summary::after {
+            content: " 🌟";
+            transform: rotate(180deg);
+        }
+        a {
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: 0.8rem 1.8rem;
+            text-decoration: none;
+            color: white;
+            background-color: #8b4513;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(139, 69, 19, 0.3);
+            justify-content: center;
+        }
+
+        a:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 
+                0 12px 35px rgba(139, 69, 19, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            background: linear-gradient(135deg, #a0522d 0%, #8b4513 100%);
+        }
+        @media (max-width: 768px) {
+            .memory-box {
+                padding: 2rem;
+                margin: 1.5rem auto;
+            }
+            
+            details {
+                padding: 1.5rem;
+                margin: 2rem auto 0;
+            }
+            
+            .memory-text {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1 class="memory-date">🌸 1998 🌸</h1>
+    <h2>The First Meeting</h2>
+
+    <div class="memory-box memory-text">
+        <p>You were both just children then - all scraped knees and shy glances.</p>
+        <p>kind of summer where sunlight fell through the leaves just so, painting the grass in dappled gold. </p>
+        <p>There you sat beneath the old oak tree, two strangers who didn't yet know you'd remember this moment forever.
+        </p>
+        <p>When he extended that piece of candy toward you, his small hand slightly trembling, it wasn't just sugar he
+            was offering.</p>
+        <p>It was the first fragile thread of what would become your story.</p>
+
+        <details>
+            <summary>🍬 Open the candy wrapper</summary>
+            <p style="text-align: center; margin-top: 1rem;"><strong> A tiny folded paper — a moment you forgot.
+                </strong> </p>
+            <div style="text-align: center;">
+                <a href="2010.html"><strong>✨ Continue to 2010</strong></a>
+            </div>
+        </details>
+
+<audio autoplay loop>
+    <source src="at-the-campfire-acoustic.mp3" type="audio/mpeg">
+  </audio>
+</body>
+
+</html>

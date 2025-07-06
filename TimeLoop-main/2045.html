@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>2045 – We Still Smile</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=EB+Garamond:wght@400;500&display=swap');
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #ffecd2, #fcb69f);
+      font-family: 'EB Garamond', serif;
+      color: #4b2c20;
+      overflow-x: hidden; /* allow vertical scroll */
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 60px 20px;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    h1 {
+      font-size: 3.5em;
+      color: #7b3f00;
+      text-shadow: 2px 2px 5px rgba(255,255,255,0.5);
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    h2 {
+      font-size: 2em;
+      color: #a0522d;
+      margin-bottom: 30px;
+      animation: fadeIn 2.5s ease-in-out;
+    }
+
+    .memory-box {
+      background: rgba(255, 255, 255, 0.75);
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      animation: fadeInUp 2s ease-in-out;
+      margin-bottom: 50px;
+    }
+
+    .memory-box p {
+      font-size: 1.3em;
+      margin: 20px 0;
+      line-height: 1.8;
+    }
+
+    em {
+      font-style: italic;
+      color: #944b00;
+    }
+
+    .back-button {
+      display: inline-block;
+      margin: 40px auto;
+      padding: 14px 30px;
+      background: linear-gradient(to right, #ff9966, #ff5e62);
+      color: white;
+      border-radius: 50px;
+      text-decoration: none;
+      font-size: 1.1em;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .back-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.6;
+      background: rgba(255, 255, 255, 0.5);
+      animation: float 10s linear infinite;
+      pointer-events: none;
+    }
+
+    .particle1 { width: 6px; height: 6px; top: 20%; left: 10%; animation-delay: 0s; }
+    .particle2 { width: 8px; height: 8px; top: 50%; left: 30%; animation-delay: 2s; }
+    .particle3 { width: 5px; height: 5px; top: 70%; left: 60%; animation-delay: 4s; }
+    .particle4 { width: 7px; height: 7px; top: 40%; left: 80%; animation-delay: 6s; }
+    .particle5 { width: 4px; height: 4px; top: 60%; left: 50%; animation-delay: 8s; }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) translateX(0);
+        opacity: 0.6;
+      }
+      50% {
+        transform: translateY(-100vh) translateX(20vw);
+        opacity: 0.3;
+      }
+      100% {
+        transform: translateY(0) translateX(0);
+        opacity: 0.6;
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Particles -->
+  <div class="particle particle1"></div>
+  <div class="particle particle2"></div>
+  <div class="particle particle3"></div>
+  <div class="particle particle4"></div>
+  <div class="particle particle5"></div>
+
+  <div class="content">
+    <h1>2045</h1>
+    <h2>😊 We Still Smile</h2>
+
+    <div class="memory-box">
+      <p>You lived a life of small joys —  
+      shared cups of tea, books with scribbled notes,  
+      music that played softly in the background as you both hummed along.</p>
+
+      <p>There was no grand declaration,  
+      but smiles that said everything,  
+      eyes that twinkled at shared memories,  
+      and hands that always found each other’s in the quiet moments.</p>
+
+      <p><em>Even now, that warmth lingers.  
+      The laughter echoes. The light stays.</em></p>
+
+      <p><em>2045 isn’t a future. It’s the present that feels like coming home — every single day.</em></p>
+    </div>
+
+    <a class="back-button" href="TRUE.html">↩ Back to Forever</a>
+  </div>
+<audio autoplay >
+    <source src="Sapphire.mp3" type="audio/mpeg">
+  </audio>
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>2010 – The First Fight</title>
+  <style>
+    body {
+      background-color: #513939;
+      color: #f0f0f0;
+      font-family: 'Georgia', serif;
+      text-align: center;
+      padding: 50px;
+      background-image: radial-gradient(circle at 10% 20%, rgba(40,40,40,0.8) 0%, rgba(20,20,20,0.9) 90%);
+      line-height: 1.6;
+    }
+
+    h1 {
+      font-size: 3.2em;
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+      color: #e8e8e8;
+      font-weight: normal;
+    }
+
+    h2 {
+      font-size: 1.8em;
+      margin-top: 0;
+      font-weight: normal;
+      color: #b0b0b0;
+      letter-spacing: 0.5px;
+    }
+
+    .memory-box {
+      background: rgba(30,30,30,0.7);
+      border: 1px solid rgba(80,80,80,0.5);
+      padding: 40px;
+      margin: 50px auto;
+      width: 65%;
+      max-width: 700px;
+      border-radius: 12px;
+      line-height: 1.8;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      backdrop-filter: blur(2px);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .memory-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.3);
+      background: rgba(35,35,35,0.8);
+    }
+
+    .memory-box p {
+      margin: 20px 0;
+      font-size: 1.1em;
+    }
+
+    details {
+      margin-top: 40px;
+      font-size: 1.1em;
+      cursor: pointer;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    details summary {
+      padding: 15px;
+      outline: none;
+    }
+
+    details[open] {
+      animation: fadeIn 0.5s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    a {
+      display: inline-block;
+      margin: 25px 12px;
+      padding: 14px 30px;
+      text-decoration: none;
+      color: #fff;
+      background-color: rgba(80,80,80,0.5);
+      border-radius: 10px;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(120,120,120,0.3);
+      font-size: 1em;
+      letter-spacing: 0.5px;
+    }
+
+    a:hover {
+      background-color: rgba(100,100,100,0.7);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    em {
+      color: #aaa;
+      font-style: italic;
+      display: block;
+      margin-top: 30px;
+      font-size: 1.05em;
+    }
+
+    /* Decorative elements */
+    .memory-box::before {
+      content: "“";
+      font-size: 5em;
+      color: rgba(100,100,100,0.2);
+      position: absolute;
+      top: -30px;
+      left: 20px;
+      line-height: 1;
+    }
+
+    .memory-box::after {
+      content: "”";
+      font-size: 5em;
+      color: rgba(100,100,100,0.2);
+      position: absolute;
+      bottom: -80px;
+      right: 20px;
+      line-height: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>2010</h1>
+  <h2>The First Silence</h2>
+
+  <div class="memory-box">
+    <p>Something small turned into silence.  
+    Maybe it was a misunderstanding, or maybe it was fear — fear of caring too much.</p>
+    
+    <p>You stopped talking.  
+    He didn't ask why.  
+    You didn't explain.</p>
+    
+    <p>But the distance wasn't empty — it was loud, filled with everything neither of you said.</p>
+
+    <p><em>And yet, in your heart, you knew… he still kept the candy wrapper.</em></p>
+  </div>
+
+  <details>
+    <summary>📝 Open the note you never sent</summary>
+    <p><em>"I never stopped waiting. I just didn't know how to come back." – You</em></p>
+    <a href="2012.html">📩 Try again</a>
+    <a href="LOOP.html">😶 Say nothing</a>
+  </details>
+
+  <audio autoplay loop>
+    <source src="rise-in-silence.mp3" type="audio/mpeg">
+  </audio>
+</body>
+</html>
