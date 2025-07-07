@@ -12,7 +12,7 @@
       background: linear-gradient(135deg, #ffecd2, #fcb69f);
       font-family: 'EB Garamond', serif;
       color: #4b2c20;
-      overflow-x: hidden; /* allow vertical scroll */
+      overflow-x: hidden;
     }
 
     .content {
@@ -61,19 +61,43 @@
     .back-button {
       display: inline-block;
       margin: 40px auto;
-      padding: 14px 30px;
+      padding: 18px 40px; /* Increased padding for larger size */
       background: linear-gradient(to right, #ff9966, #ff5e62);
       color: white;
       border-radius: 50px;
       text-decoration: none;
-      font-size: 1.1em;
+      font-size: 1.3em; /* Larger font size */
+      font-weight: 500; /* Slightly bolder */
       box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      border: none;
+      min-width: 220px; /* Minimum width to prevent text wrapping */
+      letter-spacing: 0.5px; /* Better readability */
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.2); /* Text shadow for better contrast */
     }
 
     .back-button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      transform: translateY(-5px); /* More pronounced lift */
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+      background: linear-gradient(to right, #ff8a5c, #ff4b4b); /* Slightly more vibrant gradient on hover */
+    }
+
+    /* Add a subtle shine effect on hover */
+    .back-button::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: 0.5s;
+    }
+
+    .back-button:hover::after {
+      left: 100%;
     }
 
     .particle {
@@ -139,17 +163,17 @@
       <p>There was no grand declaration,  
       but smiles that said everything,  
       eyes that twinkled at shared memories,  
-      and hands that always found each other’s in the quiet moments.</p>
+      and hands that always found each other's in the quiet moments.</p>
 
       <p><em>Even now, that warmth lingers.  
       The laughter echoes. The light stays.</em></p>
 
-      <p><em>2045 isn’t a future. It’s the present that feels like coming home — every single day.</em></p>
+      <p><em>2045 isn't a future. It's the present that feels like coming home — every single day.</em></p>
     </div>
 
     <a class="back-button" href="TRUE.html">↩ Back to Forever</a>
   </div>
-<audio autoplay >
+  <audio autoplay>
     <source src="Sapphire.mp3" type="audio/mpeg">
   </audio>
 </body>
